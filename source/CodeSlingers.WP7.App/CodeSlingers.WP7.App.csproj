@@ -101,6 +101,10 @@
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\WineModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ui\SmartDispatcher.cs" />
+    <Compile Include="Views\Business.xaml.cs">
+      <DependentUpon>Business.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Proxies\LocationProxy.cs" />
     <Compile Include="Proxies\WineProxy.cs" />
     <Compile Include="Views\Home.xaml.cs">
@@ -116,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Business.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
