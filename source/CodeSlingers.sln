@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSlingers.Web", "CodeSlingers.Web\CodeSlingers.Web.csproj", "{BCCB8FBF-26DF-4582-A49B-FF59DE92AF75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSlingers.Web.Tests", "CodeSlingers.Web.Tests\CodeSlingers.Web.Tests.csproj", "{3310119E-28BD-42EE-A3A5-A19A709E091D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCCB8FBF-26DF-4582-A49B-FF59DE92AF75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCCB8FBF-26DF-4582-A49B-FF59DE92AF75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCCB8FBF-26DF-4582-A49B-FF59DE92AF75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCCB8FBF-26DF-4582-A49B-FF59DE92AF75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3310119E-28BD-42EE-A3A5-A19A709E091D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3310119E-28BD-42EE-A3A5-A19A709E091D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3310119E-28BD-42EE-A3A5-A19A709E091D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3310119E-28BD-42EE-A3A5-A19A709E091D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
