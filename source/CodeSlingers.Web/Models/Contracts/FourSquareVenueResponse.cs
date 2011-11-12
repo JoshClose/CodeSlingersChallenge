@@ -7,5 +7,6 @@ namespace CodeSlingers.Web.Models.Contracts
 {
     public class FourSquareVenueResponse
     {
+        public IList<FourSquareGroup> Groups { get; set; }
     }
 }
