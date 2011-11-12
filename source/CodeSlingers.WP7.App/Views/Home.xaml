@@ -24,7 +24,7 @@
 					<ItemsControl ItemsSource="{Binding Businesses}">
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
-								<Button>
+								<Button Margin="0,0,0,12" Click="NearbyLocationItemClick">
 									<Button.Template>
 										<ControlTemplate>
 											<StackPanel>
