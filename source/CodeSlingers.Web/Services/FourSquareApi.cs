@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using RestSharp;
 using CodeSlingers.Web.Models.Contracts;
+using CodeSlingers.Web.Models;
 
 namespace CodeSlingers.Web.Services
 {    
     public interface IFourSquareApi : IService
     {
-        FourSquareVenueResponse GetNearbyVenues(decimal latitude, decimal longitude);
+        IList<Business> GetNearbyVenues(decimal latitude, decimal longitude);
     }
 
     public class FourSquareApi : IFourSquareApi
@@ -17,17 +18,14 @@ namespace CodeSlingers.Web.Services
         private const string _fourSquareApiUrl = "https://api.foursquare.com/v2/venues/search";
         private const string _clientId = "IKRTLFHA0MPRHIVLRITV2KFPEYJMZSCR4LLYFC5A032LNYA5";
         private const string _secret = "S5PR2ABWRQKUJJJQOI4OD5BV3A34DBGDK142ACOUP2GI0KAP";
-
-        private RestClient _restClient;
-
-        //?ll=44.862253,-93.346592&client_id=&client_secret=";
+        private readonly RestClient _restClient;
 
         public FourSquareApi()
         {
             _restClient = new RestClient(_fourSquareApiUrl);
         }
 
-        public FourSquareVenueResponse GetNearbyVenues(decimal latitude, decimal longitude)
+        public IList<Business> GetNearbyVenues(decimal latitude, decimal longitude)
         {
             string latlong = string.Format("{0},{1}", latitude, longitude);
 
@@ -37,7 +35,41 @@ namespace CodeSlingers.Web.Services
             restRequest.AddParameter("ll", latlong);
 
             var response = _restClient.Execute<FourSquareVenueResponse>(restRequest);
-            return response.Data;
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
+
+            var businesses = MapResponseToBusinessList(response.Data);
+            return businesses;
+        }
+
+        private IList<Business> MapResponseToBusinessList(FourSquareVenueResponse response)
+        {
+            var businesses = new List<Business>();
+            if (response != null && response.Response != null && response.Response.Groups != null)
+            {
+                foreach (var group in response.Response.Groups)
+                {
+                    if (group.Items != null)
+                    {
+                        foreach (var item in group.Items)
+                        {
+                            var business = MapVenueItemToBusiness(item);
+                            businesses.Add(business);
+                        }
+                    }
+                }
+            }
+
+            return businesses;
+        }
+
+        private Business MapVenueItemToBusiness(FourSquareItem venueItem)
+        {
+            var business = new Business();
+
+            return business;
         }
     }
 }

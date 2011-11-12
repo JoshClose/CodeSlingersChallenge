@@ -9,6 +9,6 @@ namespace CodeSlingers.Web.Models.Contracts
     {
         public string Type { get; set; }
         public string Name { get; set; }
-        public IList<FourSquareItem> Items { get; set; }
+        public List<FourSquareItem> Items { get; set; }
     }
 }
