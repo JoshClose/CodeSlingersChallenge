@@ -5,15 +5,15 @@ using System.Web;
 
 namespace CodeSlingers.Web.Models
 {
-    public class User
+    public class WineBusiness
     {
-        public User()
+        public WineBusiness()
         {
             WineIds = new List<string>();
         }
-        public long Id { get; set; }
+        public string Id { get; set; }
 
-        public IList<string> WineIds { get; set; }
+        public List<string> WineIds { get; set; }
 
         public void AddWine(int wineId)
         {
