@@ -41,9 +41,28 @@
       <HintPath>..\..\lib\Autofac\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Raven\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\lib\Raven\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Raven\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Raven\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.MvcIntegration">
+      <HintPath>..\..\lib\Raven\Raven.Client.MvcIntegration.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\..\lib\RestSharp\NET4\RestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -68,9 +87,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\WineController.cs" />
+    <Compile Include="Data\Db.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -78,6 +98,10 @@
     <Compile Include="Models\Contracts\FourSquareGroup.cs" />
     <Compile Include="Models\Contracts\FourSquareItem.cs" />
     <Compile Include="Models\Contracts\FourSquareVenueResponse.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Contracts\FourSquareVenueResponseResponse.cs" />
+    <Compile Include="Models\Wine.cs" />
+    <Compile Include="Models\WineType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DummyService.cs" />
     <Compile Include="Services\FourSquareApi.cs" />
