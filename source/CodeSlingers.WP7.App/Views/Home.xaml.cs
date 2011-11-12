@@ -19,5 +19,16 @@ namespace CodeSlingers.WP7.App.Views
 		{
 			InitializeComponent();
 		}
+
+		protected override void OnNavigatedTo( System.Windows.Navigation.NavigationEventArgs e )
+		{
+			string panoramaItemString;
+			if( NavigationContext.QueryString.TryGetValue( "panoramaItem", out panoramaItemString ) )
+			{
+				var panoramaItem = (PanoramaItems)Enum.Parse( typeof( PanoramaItems ), panoramaItemString, true );
+
+				panorama.DefaultItem = panorama.Items[(int)panoramaItem];
+			}
+		}
 	}
 }
