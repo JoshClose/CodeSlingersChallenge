@@ -38,5 +38,19 @@ namespace CodeSlingers.WP7.App.Proxies
                 callback(businessModels);
             });
         }
+
+        public void GetWineDetail(string wineId, Action<WineModel> callback)
+        {
+            string requestUrl = string.Format("{0}/Wines/ById", Globals.ServiceHostUrl);
+            var request = new RestRequest(requestUrl, Method.GET);
+            request.AddParameter("wineId", wineId);
+
+            _restClient.ExecuteAsync<Wine>(request, (response) =>
+            {
+                Wine wine = response.Data;
+                WineModel windeModel = Mapper.Map(wine);
+                callback(windeModel);
+            });
+        }
     }
 }
