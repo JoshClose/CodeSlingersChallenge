@@ -28,7 +28,7 @@ namespace CodeSlingers.WP7.App.Proxies
         public void GetWinesByBusiness(string businessId, Action<IList<WineModel>> callback)
         {
             string requestUrl = string.Format("{0}/Wines/ByLocation", Globals.ServiceHostUrl);
-            var request = new RestRequest(requestUrl, Method.POST);
+            var request = new RestRequest(requestUrl, Method.GET);
             request.AddParameter("businessId", businessId);
 
             _restClient.ExecuteAsync<List<Wine>>(request, (response) =>
