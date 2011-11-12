@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSlingers.Web", "CodeSli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSlingers.Web.Tests", "CodeSlingers.Web.Tests\CodeSlingers.Web.Tests.csproj", "{3310119E-28BD-42EE-A3A5-A19A709E091D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSlingers.WP7.App", "CodeSlingers.WP7.App\CodeSlingers.WP7.App.csproj", "{8128A0A2-6D7D-44E7-8C27-92815803454B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,12 @@ Global
 		{3310119E-28BD-42EE-A3A5-A19A709E091D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3310119E-28BD-42EE-A3A5-A19A709E091D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3310119E-28BD-42EE-A3A5-A19A709E091D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8128A0A2-6D7D-44E7-8C27-92815803454B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8128A0A2-6D7D-44E7-8C27-92815803454B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8128A0A2-6D7D-44E7-8C27-92815803454B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8128A0A2-6D7D-44E7-8C27-92815803454B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8128A0A2-6D7D-44E7-8C27-92815803454B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8128A0A2-6D7D-44E7-8C27-92815803454B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
