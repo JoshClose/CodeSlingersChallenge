@@ -21,5 +21,20 @@ namespace CodeSlingers.WP7.App.Models
 				State = data.State,
 			};
 		}
+
+        public static WineModel Map(Wine wine)
+        {
+            return new WineModel
+            {
+                Id = wine.Id,
+                Country = wine.Country,
+                Name = wine.Name,
+                PhotoPath = wine.PhotoPath,
+                Type = wine.Type,
+                Varietal = wine.Varietal,
+                Vineyard = wine.Vineyard,
+                Year = wine.Year
+            };
+        }
 	}
 }
