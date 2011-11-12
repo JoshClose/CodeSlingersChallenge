@@ -11,9 +11,9 @@ using System.Windows.Shapes;
 
 namespace CodeSlingers.WP7.App
 {
-    public static class AppSettings
+    public static class Globals
     {
-        static AppSettings()
+        static Globals()
         {
             ServiceHostUrl = "http://localhost";
         }
