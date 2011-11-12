@@ -89,7 +89,7 @@
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
-    <Compile Include="Controllers\WineController.cs" />
+    <Compile Include="Controllers\WinesController.cs" />
     <Compile Include="Data\Db.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
