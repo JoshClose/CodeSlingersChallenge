@@ -24,5 +24,12 @@ namespace CodeSlingers.Web.Controllers
             return this.Json(allBusinesses, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult BusinessDetail(string id)
+        {
+            Business business = _fourSquareApi.GetVenueById(id);
+            return this.Json(business, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

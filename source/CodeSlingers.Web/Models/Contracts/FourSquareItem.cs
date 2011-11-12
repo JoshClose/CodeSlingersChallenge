@@ -10,5 +10,8 @@ namespace CodeSlingers.Web.Models.Contracts
         public string Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
+        public FourSquareLocation Location { get; set; }
+        public List<FourSquareCategory> Categories { get; set; }
+        public FourSquareContact Contact { get; set; }
     }
 }
