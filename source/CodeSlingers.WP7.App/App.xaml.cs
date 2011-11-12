@@ -57,6 +57,7 @@ namespace CodeSlingers.WP7.App
 				PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
 			}
 
+			var x = Globals.ServiceHostUrl;
 		}
 
 		// Code to execute when the application is launching (eg, from Start)
