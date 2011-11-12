@@ -23,5 +23,7 @@
         public string Category { get; set; }
 
         public string PhoneNumber { get; set; }
+
+        public string FormattedPhoneNumber { get; set; }
     }
 }

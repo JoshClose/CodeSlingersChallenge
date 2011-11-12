@@ -11,6 +11,7 @@ namespace CodeSlingers.Web.Services
     public interface IFourSquareApi : IService
     {
         IList<Business> GetNearbyVenues(decimal latitude, decimal longitude);
+        Business GetVenueById(string fourSquareId);
     }
 
     public class FourSquareApi : IFourSquareApi
@@ -44,6 +45,11 @@ namespace CodeSlingers.Web.Services
             return businesses;
         }
 
+        public Business GetVenueById(string fourSquareId)
+        {
+            throw new NotImplementedException();
+        }
+
         private IList<Business> MapResponseToBusinessList(FourSquareVenueResponse response)
         {
             var businesses = new List<Business>();
@@ -72,6 +78,27 @@ namespace CodeSlingers.Web.Services
             business.Name = venueItem.Name;
             business.Url = venueItem.Url;
 
+            if (venueItem.Contact != null)
+            {
+                business.PhoneNumber = venueItem.Contact.Phone;
+                business.FormattedPhoneNumber = venueItem.Contact.FormattedPhone;
+            }
+
+            if (venueItem.Categories != null && venueItem.Categories.Any())
+            {
+                business.Category = venueItem.Categories.First().Name;
+            }
+
+            if (venueItem.Location != null)
+            {
+                business.Latitude = venueItem.Location.Latitude;
+                business.Longitude = venueItem.Location.Longitude;
+                business.Distance = venueItem.Location.Distance;
+                business.Address = venueItem.Location.Address;
+                business.City = venueItem.Location.City;
+                business.State = venueItem.Location.State;
+            }
+            
             return business;
         }
     }
