@@ -22,7 +22,7 @@ namespace CodeSlingers.Web.Controllers
                 if (business == null)
                 {
                     Response.StatusCode = 404;
-                    return Json("No business found");
+                    return Json("No business found", JsonRequestBehavior.AllowGet);
                 }
 
                 foreach (var wineId in business.WineIds)
@@ -35,6 +35,21 @@ namespace CodeSlingers.Web.Controllers
                 }
             }
             return Json(wines, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ById(int wineId)
+        {
+            Wine w;
+            using (var session = Db.CreateSession())
+            {
+                w = session.Load<Wine>(wineId);
+            }
+            if (w == null)
+            {
+                Response.StatusCode = 404;
+                return Json("Wine not found", JsonRequestBehavior.AllowGet);
+            }
+            return Json(w, JsonRequestBehavior.AllowGet);
         }
 
     }
