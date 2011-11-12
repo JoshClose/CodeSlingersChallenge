@@ -15,7 +15,7 @@ namespace CodeSlingers.WP7.App
     {
         static Globals()
         {
-            ServiceHostUrl = "http://localhost";
+            ServiceHostUrl = "http://localhost/CodeSlingers.Web";
         }
 
         public static string ServiceHostUrl { get; private set; }

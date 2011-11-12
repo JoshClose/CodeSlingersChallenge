@@ -18,9 +18,6 @@ namespace CodeSlingers.WP7.App.Proxies
 {
     public class LocationProxy
     {
-        //http://localhost/CodeSlingers.Web/Location/NearbyBusinesses?latitude=44.862253&longitude=-93.346592
-        private readonly string _nearbyBusinessUrl = "";
-        private readonly string _businessByIdUrl = "";
         private readonly RestClient _restClient;
 
         public LocationProxy()
@@ -28,9 +25,12 @@ namespace CodeSlingers.WP7.App.Proxies
             _restClient = new RestClient();
         }
 
-        public void GetNearbyBusiness(decimal latitude, decimal longitude, Action<IList<BusinessModel>> callback)
+        public void GetNearbyBusinesses(decimal latitude, decimal longitude, Action<IList<BusinessModel>> callback)
         {
-            var request = new RestRequest(_nearbyBusinessUrl, Method.POST);
+            string requestUrl = string.Format("{0}/Location/NearbyBusinesses", Globals.ServiceHostUrl);
+            var request = new RestRequest(requestUrl, Method.POST);
+            request.AddParameter("latitude", latitude);
+            request.AddParameter("longitude", longitude);
 
             _restClient.ExecuteAsync<List<Business>>(request, (response) =>
             {
