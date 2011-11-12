@@ -30,6 +30,12 @@ namespace CodeSlingers.WP7.App.Models
 
         public string Country { get; set; }
 
+        public string Comments { get; set; }
+
+        public string Pairing { get; set; }
+
+        public string PriceRange { get; set; }
+
         public BusinessModel BusinessOwner { get; set; }
     }
 }

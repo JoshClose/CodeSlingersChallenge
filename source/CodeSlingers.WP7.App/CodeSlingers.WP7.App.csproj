@@ -100,6 +100,7 @@
     <Compile Include="Models\BusinessModel.cs" />
     <Compile Include="Models\Mapper.cs" />
     <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\PriceRanges.cs" />
     <Compile Include="Models\WineModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ui\SmartDispatcher.cs" />
