@@ -46,16 +46,45 @@ namespace CodeSlingers.Web.Tests
         {
         }
 
-        //[TestMethod]
-        //public void SeedDatabase()
-        //{
-        //    var wines = new List<Wine>()
-        //    {
-        //        new Wine()
-        //        {
-        //        }
-        //    }
-        //}
+        [TestMethod]
+        public void SeedDatabase()
+        {
+            var business1 = new Business()
+            {
+                Id = "123abc",
+                Address = "123 Fake Street",
+                Name = "Good Liquor Store",
+            };
+            var business2 = new Business()
+            {
+                Id = "456def",
+                Address = "456 Evergreen Way",
+                Name = "Fancy restaurant"
+            };
+            var business3 = new Business()
+            {
+                Id = "789ghi",
+                Address = "789 Viking Dr",
+                Name = "Hip Wine Bar"
+            };
+
+            using (var session = Db.CreateSession())
+            {
+                session.Store(business1);
+                session.Store(business2);
+                session.Store(business3);
+                session.SaveChanges();
+            }
+            
+            var wines = new List<Wine>()
+            {
+                new Wine()
+                {
+                    Name = "Awesome Shiraz",
+                    
+                }
+            };
+        }
 
         [Ignore]
         [TestMethod]
