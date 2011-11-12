@@ -66,6 +66,7 @@
     <Reference Include="RestSharp.WindowsPhone">
       <HintPath>..\..\lib\RestSharp\WindowsPhone\7.1\RestSharp.WindowsPhone.dll</HintPath>
     </Reference>
+    <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
