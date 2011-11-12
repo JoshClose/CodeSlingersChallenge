@@ -68,6 +68,9 @@ namespace CodeSlingers.Web.Services
         private Business MapVenueItemToBusiness(FourSquareItem venueItem)
         {
             var business = new Business();
+            business.Id = venueItem.Id;
+            business.Name = venueItem.Name;
+            business.Url = venueItem.Url;
 
             return business;
         }
