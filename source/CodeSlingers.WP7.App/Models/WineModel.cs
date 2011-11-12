@@ -29,5 +29,7 @@ namespace CodeSlingers.WP7.App.Models
         public WineType Type { get; set; }
 
         public string Country { get; set; }
+
+        public BusinessModel BusinessOwner { get; set; }
     }
 }

@@ -46,6 +46,8 @@ namespace CodeSlingers.WP7.App.Models
                     Vineyard = wine.Vineyard,
                     Year = wine.Year
                 };
+
+                model.BusinessOwner = Mapper.Map(wine.BusinessOwner);
             }
 
             return model;

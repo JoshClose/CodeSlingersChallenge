@@ -21,5 +21,7 @@ namespace CodeSlingers.Web.Models
         public WineType Type { get; set; }
 
         public string Country { get; set; }
+
+        public Business BusinessOwner { get; set; }
     }
 }
