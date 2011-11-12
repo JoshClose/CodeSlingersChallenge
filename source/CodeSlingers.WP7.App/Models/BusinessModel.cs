@@ -1,22 +1,10 @@
-﻿using System;
-using System.Net;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-
-namespace CodeSlingers.WP7.App.Models
+﻿namespace CodeSlingers.WP7.App.Models
 {
 	public class BusinessModel : ModelBase
 	{
-		private int id;
-		private long latitude;
-		private long longitude;
+		private string id;
+		private decimal latitude;
+		private decimal longitude;
 		private string name;
 		private string address;
 		private string city;
@@ -24,7 +12,7 @@ namespace CodeSlingers.WP7.App.Models
 		private string category;
 		private string phoneNumber;
 
-		public int Id
+		public string Id
 		{
 			get { return id; }
 			set
@@ -34,7 +22,7 @@ namespace CodeSlingers.WP7.App.Models
 			}
 		}
 
-		public long Latitude
+		public decimal Latitude
 		{
 			get { return latitude; }
 			set
@@ -44,7 +32,7 @@ namespace CodeSlingers.WP7.App.Models
 			}
 		}
 
-		public long Longitude
+		public decimal Longitude
 		{
 			get { return longitude; }
 			set
