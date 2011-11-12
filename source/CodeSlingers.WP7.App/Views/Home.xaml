@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage 
+﻿<Views:ViewBase
     x:Class="CodeSlingers.WP7.App.Views.Home"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,8 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Views="clr-namespace:CodeSlingers.WP7.App.Views" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -16,12 +16,23 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama Title="wine scout" x:Name="panorama">
+        <controls:Panorama Title="wine scout" x:Name="panorama" SelectionChanged="PanoramaSelectionChanged">
 
             <!--Panorama item one-->
             <controls:PanoramaItem Header="nearby locations">
-                <Grid/>
-            </controls:PanoramaItem>
+				<ScrollViewer Margin="12,0,0,0">
+					<ItemsControl ItemsSource="{Binding Businesses}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<StackPanel>
+									<TextBlock Text="{Binding Name}" />
+									<TextBlock Text="{Binding AddressDisplay}" />
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</controls:PanoramaItem>
 
             <!--Panorama item two-->
             <controls:PanoramaItem Header="my wines">
@@ -44,4 +55,4 @@
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
-</phone:PhoneApplicationPage>
+</Views:ViewBase>
