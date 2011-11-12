@@ -83,5 +83,17 @@ namespace CodeSlingers.WP7.App.Views
 			businesses.Add( new BusinessModel { Name = "Uptown Bar 2", Address = "123 4th st", City = "apple", State = "MN" } );
 			RaisePropertyChanged( () => Businesses );
 		}
+
+		private void NearbyLocationItemClick( object sender, RoutedEventArgs e )
+		{
+			var business = ( (FrameworkElement)sender ).DataContext as BusinessModel;
+			if( business == null )
+			{
+				return;
+			}
+
+			var uri = new Uri( string.Format( "{0}?businessId={1}", "", business.Id ), UriKind.RelativeOrAbsolute );
+			NavigationService.Navigate( uri );
+		}
 	}
 }
