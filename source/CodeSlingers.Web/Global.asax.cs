@@ -33,7 +33,7 @@ namespace CodeSlingers.Web
         protected void Application_Start()
         {
             //turn on for Fiddler tracing
-            System.Net.GlobalProxySelection.Select = new System.Net.WebProxy("127.0.0.1", 8888);
+            //System.Net.GlobalProxySelection.Select = new System.Net.WebProxy("127.0.0.1", 8888);
 
             AreaRegistration.RegisterAllAreas();
 

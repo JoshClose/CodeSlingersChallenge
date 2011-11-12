@@ -16,7 +16,7 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama Title="wine scout">
+        <controls:Panorama Title="wine scout" x:Name="panorama">
 
             <!--Panorama item one-->
             <controls:PanoramaItem Header="nearby locations">
