@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CodeSlingers.Web.Data;
 using CodeSlingers.Web.Models;
+using CodeSlingers.Web.Services;
 
 namespace CodeSlingers.Web.Tests
 {
@@ -39,25 +40,47 @@ namespace CodeSlingers.Web.Tests
                 Assert.AreEqual("Australia", savedWine.Country);
             }
 
-        }
-
-        [TestMethod]
-        public void GetMyWinesTest()
-        {
-        }
+        }  
 
         //[TestMethod]
-        //public void SeedDatabase()
+        //public void BusinessWithWines()
         //{
-        //    var wines = new List<Wine>()
+        //    using (var session = Db.CreateSession())
         //    {
-        //        new Wine()
-        //        {
-        //        }
+        //        var b = session.Include<WineBusiness>(wb => wb.WineIds).Load<WineBusiness>("123abc");
+        //        var wine1 = session.Load<Wine>(b.WineIds[0]);
         //    }
         //}
 
-        [Ignore]
+        [TestMethod]
+        public void Seed()
+        {
+            using (var session = Db.CreateSession())
+            {
+                FourSquareApi api = new FourSquareApi();
+                Random r = new Random();
+                var venues = api.GetNearbyVenues(44.862253M, -93.346592M).Take(5).ToList();
+                for (int j = 0; j < venues.Count; j++)
+                {
+                    WineBusiness b = new WineBusiness()
+                    {
+                        Id = venues[j].Id
+                    };
+                    for (int i = 0; i < r.Next(0, 5); i++)
+                    {
+                        Wine w = new Wine();
+                        w.Name = "Wine " + j.ToString() + i.ToString();
+                        session.Store(w);
+                        session.SaveChanges();
+                        b.AddWine(w.Id);
+                    }
+                    session.Store(b);
+                    session.SaveChanges();
+                }
+            }
+
+        }
+
         [TestMethod]
         public void CleanupDB()
         {
@@ -75,7 +98,7 @@ namespace CodeSlingers.Web.Tests
                     session.Delete(user);
                 }
 
-                var businesses = session.Query<Business>().ToList();
+                var businesses = session.Query<WineBusiness>().ToList();
                 foreach (var business in businesses)
                 {
                     session.Delete(business);

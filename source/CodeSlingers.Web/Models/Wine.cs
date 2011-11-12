@@ -9,10 +9,6 @@ namespace CodeSlingers.Web.Models
     {
         public int Id { get; set; }
 
-        public int BusinessId { get; set; }
-
-        public Business Business { get; set; }
-
         public string Name { get; set; }
         
         public string Varietal { get; set; }
