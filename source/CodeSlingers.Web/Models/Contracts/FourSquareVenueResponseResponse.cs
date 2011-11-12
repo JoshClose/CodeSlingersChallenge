@@ -5,10 +5,8 @@ using System.Web;
 
 namespace CodeSlingers.Web.Models.Contracts
 {
-    public class FourSquareItem
+    public class FourSquareVenueResponseResponse
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Url { get; set; }
+        public IList<FourSquareGroup> Groups { get; set; }
     }
 }

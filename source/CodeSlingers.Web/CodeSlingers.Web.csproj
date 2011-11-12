@@ -99,6 +99,7 @@
     <Compile Include="Models\Contracts\FourSquareItem.cs" />
     <Compile Include="Models\Contracts\FourSquareVenueResponse.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Contracts\FourSquareVenueResponseResponse.cs" />
     <Compile Include="Models\Wine.cs" />
     <Compile Include="Models\WineType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
