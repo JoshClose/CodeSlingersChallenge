@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CodeSlingers.Web.Data;
 using CodeSlingers.Web.Models;
+using CodeSlingers.Web.Services;
 
 namespace CodeSlingers.Web.Tests
 {
@@ -39,54 +40,47 @@ namespace CodeSlingers.Web.Tests
                 Assert.AreEqual("Australia", savedWine.Country);
             }
 
-        }
+        }  
+
+        //[TestMethod]
+        //public void BusinessWithWines()
+        //{
+        //    using (var session = Db.CreateSession())
+        //    {
+        //        var b = session.Include<WineBusiness>(wb => wb.WineIds).Load<WineBusiness>("123abc");
+        //        var wine1 = session.Load<Wine>(b.WineIds[0]);
+        //    }
+        //}
 
         [TestMethod]
-        public void GetMyWinesTest()
+        public void Seed()
         {
-        }
-
-        [TestMethod]
-        public void SeedDatabase()
-        {
-            var business1 = new Business()
-            {
-                Id = "123abc",
-                Address = "123 Fake Street",
-                Name = "Good Liquor Store",
-            };
-            var business2 = new Business()
-            {
-                Id = "456def",
-                Address = "456 Evergreen Way",
-                Name = "Fancy restaurant"
-            };
-            var business3 = new Business()
-            {
-                Id = "789ghi",
-                Address = "789 Viking Dr",
-                Name = "Hip Wine Bar"
-            };
-
             using (var session = Db.CreateSession())
             {
-                session.Store(business1);
-                session.Store(business2);
-                session.Store(business3);
-                session.SaveChanges();
-            }
-            
-            var wines = new List<Wine>()
-            {
-                new Wine()
+                FourSquareApi api = new FourSquareApi();
+                Random r = new Random();
+                var venues = api.GetNearbyVenues(44.862253M, -93.346592M).Take(5).ToList();
+                for (int j = 0; j < venues.Count; j++)
                 {
-                    Name = "Awesome Shiraz",
-                    
+                    WineBusiness b = new WineBusiness()
+                    {
+                        Id = venues[j].Id
+                    };
+                    for (int i = 0; i < r.Next(0, 5); i++)
+                    {
+                        Wine w = new Wine();
+                        w.Name = "Wine " + j.ToString() + i.ToString();
+                        session.Store(w);
+                        session.SaveChanges();
+                        b.AddWine(w.Id);
+                    }
+                    session.Store(b);
+                    session.SaveChanges();
                 }
-            };
+            }
+
         }
 
-        [Ignore]
         [TestMethod]
         public void CleanupDB()
         {
@@ -104,7 +98,7 @@ namespace CodeSlingers.Web.Tests
                     session.Delete(user);
                 }
 
-                var businesses = session.Query<Business>().ToList();
+                var businesses = session.Query<WineBusiness>().ToList();
                 foreach (var business in businesses)
                 {
                     session.Delete(business);
