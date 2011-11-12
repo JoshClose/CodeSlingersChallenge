@@ -40,5 +40,50 @@ namespace CodeSlingers.Web.Tests
             }
 
         }
+
+        [TestMethod]
+        public void GetMyWinesTest()
+        {
+        }
+
+        //[TestMethod]
+        //public void SeedDatabase()
+        //{
+        //    var wines = new List<Wine>()
+        //    {
+        //        new Wine()
+        //        {
+        //        }
+        //    }
+        //}
+
+        [Ignore]
+        [TestMethod]
+        public void CleanupDB()
+        {
+            using (var session = Db.CreateSession())
+            {
+                var wines = session.Query<Wine>().ToList();
+                foreach (var wine in wines)
+                {
+                    session.Delete(wine);
+                }
+
+                var users = session.Query<User>().ToList();
+                foreach (var user in users)
+                {
+                    session.Delete(user);
+                }
+
+                var businesses = session.Query<Business>().ToList();
+                foreach (var business in businesses)
+                {
+                    session.Delete(business);
+                }
+
+                session.SaveChanges();
+            }
+
+        }
     }
 }
