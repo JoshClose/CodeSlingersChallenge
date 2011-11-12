@@ -27,7 +27,7 @@ namespace CodeSlingers.WP7.App
 
 		private void FindWinesClick( object sender, RoutedEventArgs e )
 		{
-			var uri = new Uri( ViewPaths.Home, UriKind.RelativeOrAbsolute );
+			var uri = new Uri( string.Format( "{0}?panoramaItem={1}", ViewPaths.Home, PanoramaItems.Nearby ), UriKind.RelativeOrAbsolute );
 			NavigationService.Navigate( uri );
 		}
 	}
