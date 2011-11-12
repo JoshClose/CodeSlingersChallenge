@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CodeSlingers.Web.Services;
+using CodeSlingers.Web.Models;
 
 namespace CodeSlingers.Web.Controllers
 {
@@ -19,8 +20,15 @@ namespace CodeSlingers.Web.Controllers
         [HttpGet]
         public ActionResult NearbyBusinesses(decimal latitude, decimal longitude)
         {
-            var allBusinesses = _fourSquareApi.GetNearbyVenues(latitude, longitude);
+            IList<Business> allBusinesses = _fourSquareApi.GetNearbyVenues(latitude, longitude);
             return this.Json(allBusinesses, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult BusinessDetail(string id)
+        {
+            Business business = _fourSquareApi.GetVenueById(id);
+            return this.Json(business, JsonRequestBehavior.AllowGet);
         }
 
     }

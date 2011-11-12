@@ -5,10 +5,10 @@ using System.Web;
 
 namespace CodeSlingers.Web.Models.Contracts
 {
-    public class FourSquareGroup
+    public class FourSquareCategory
     {
-        public string Type { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
-        public List<FourSquareItem> Items { get; set; }
+        public string Icon { get; set; }
     }
 }
