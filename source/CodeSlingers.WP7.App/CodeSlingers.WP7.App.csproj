@@ -90,11 +90,17 @@
     <Compile Include="..\CodeSlingers.Web\Models\Business.cs">
       <Link>Data\Business.cs</Link>
     </Compile>
+    <Compile Include="..\CodeSlingers.Web\Models\FacebookUser.cs">
+      <Link>Data\FacebookUser.cs</Link>
+    </Compile>
     <Compile Include="..\CodeSlingers.Web\Models\PriceRanges.cs">
       <Link>Data\PriceRanges.cs</Link>
     </Compile>
     <Compile Include="..\CodeSlingers.Web\Models\User.cs">
       <Link>Data\User.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeSlingers.Web\Models\Varietals.cs">
+      <Link>Data\Varietals.cs</Link>
     </Compile>
     <Compile Include="..\CodeSlingers.Web\Models\Wine.cs">
       <Link>Data\Wine.cs</Link>
