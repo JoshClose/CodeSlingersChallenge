@@ -7,6 +7,7 @@ using CodeSlingers.Web.Models;
 using CodeSlingers.Web.Data;
 using CodeSlingers.Web.Services;
 using RestSharp;
+using System.IO;
 
 namespace CodeSlingers.Web.Controllers
 {
@@ -66,7 +67,7 @@ namespace CodeSlingers.Web.Controllers
         }
 
         [HttpPut]
-        public ActionResult Create(Wine wine, string createdByUserAccessToken)
+        public ActionResult Create(Wine wine, string createdByUserAccessToken, string photo)
         {
             if(wine == null || wine.BusinessOwner == null || string.IsNullOrEmpty(wine.BusinessOwner.Id))
             {
@@ -76,7 +77,7 @@ namespace CodeSlingers.Web.Controllers
             if (wine.Id > 0)
             {
                 throw new InvalidOperationException("Create not allowed on an already existing wine.");
-            }
+            }            
 
             using (var session = Db.CreateSession())
             {
@@ -92,6 +93,7 @@ namespace CodeSlingers.Web.Controllers
                     session.SaveChanges();
                 }
 
+                wine.PhotoPath = SavePhotoToFileSystem(photo);
                 wine.CreatedByUserId = GetUserIdFromAccessToken(createdByUserAccessToken);
                 wine.CreateDate = DateTime.Today;
                 wine.BusinessOwner = null; //this not stored in DB
@@ -131,6 +133,30 @@ namespace CodeSlingers.Web.Controllers
             RestClient client = new RestClient("https://graph.facebook.com");
             RestRequest request = new RestRequest("me?access_token=" + accessToken, Method.GET);
             return client.Execute<FacebookUser>(request).Data.Id;
+        }
+
+        private string SavePhotoToFileSystem(string base64EncodedPhoto)
+        {
+            Guid fileGuid = Guid.NewGuid();
+            string relativePath = string.Format("~/content/images/wines/{0}.bmp", fileGuid);            
+            string wineFilePath = Server.MapPath(relativePath);            
+
+            byte[] photoBytes = null;
+            if (!string.IsNullOrEmpty(base64EncodedPhoto) && base64EncodedPhoto.Length > 10)
+            {
+                photoBytes = Convert.FromBase64String(base64EncodedPhoto);
+                System.IO.File.WriteAllBytes(wineFilePath, photoBytes);
+            }
+            else
+            {
+                //write the default image to this wine location
+                string defaultImage = Server.MapPath("~/content/images/wines/default.bmp");
+                photoBytes = System.IO.File.ReadAllBytes(defaultImage);
+                System.IO.File.WriteAllBytes(wineFilePath, photoBytes);
+            }
+
+            string fileName = fileGuid.ToString() + ".bmp";
+            return fileName;
         }
     }
 }
