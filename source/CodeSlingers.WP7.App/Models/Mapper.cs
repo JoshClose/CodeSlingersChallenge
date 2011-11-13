@@ -56,5 +56,32 @@ namespace CodeSlingers.WP7.App.Models
 
             return model;
         }
+
+        public static Wine Map(WineModel wineModel)
+        {
+            Wine wine = null;
+
+            if (wineModel != null)
+            {
+                wine = new Wine
+                {
+                    Id = 0,
+                    Country = wineModel.Country,
+                    Name = wineModel.Name,
+                    PhotoPath = wineModel.PhotoPath,
+                    Type = wineModel.Type,
+                    Varietal = wineModel.Varietal,
+                    Vineyard = wineModel.Vineyard,
+                    Year = wineModel.Year,
+                    Comments = wineModel.Comments,
+                    Pairing = wineModel.Pairing,
+                    PriceRange = wineModel.PriceRange,
+                };
+
+                wine.BusinessOwner = new Business { Id = wineModel.BusinessOwner.Id };
+            }
+
+            return wine;
+        }
 	}
 }
