@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CodeSlingers.WP7.App.Ui;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -57,6 +58,7 @@ namespace CodeSlingers.WP7.App
 				PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
 			}
 
+			SmartDispatcher.Initialize();
 			var x = Globals.ServiceHostUrl;
 		}
 

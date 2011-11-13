@@ -47,9 +47,12 @@ namespace CodeSlingers.Web.Controllers
         public ActionResult ById(int wineId)
         {
             Wine wine;
+            string businessId;
             using (var session = Db.CreateSession())
             {
                 wine = session.Load<Wine>(wineId);
+                var id = "wines/" + wineId;
+                businessId = session.Query<WineBusiness>().ToList().Where(wb => wb.WineIds.Contains(id)).FirstOrDefault().Id;
             }
             if (wine == null)
             {
@@ -57,7 +60,7 @@ namespace CodeSlingers.Web.Controllers
                 return Json("Wine not found", JsonRequestBehavior.AllowGet);
             }
 
-            wine.BusinessOwner = _fourSquareApi.GetVenueById("459d0982f964a520a0401fe3");
+            wine.BusinessOwner = _fourSquareApi.GetVenueById(businessId);
             return Json(wine, JsonRequestBehavior.AllowGet);
         }
 

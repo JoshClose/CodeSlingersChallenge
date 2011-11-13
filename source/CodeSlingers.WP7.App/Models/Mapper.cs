@@ -47,7 +47,8 @@ namespace CodeSlingers.WP7.App.Models
                     Year = wine.Year,
                     Comments = wine.Comments,
                     Pairing = wine.Pairing,
-                    PriceRange = wine.PriceRange
+                    PriceRange = wine.PriceRange,
+                    CreateDate = wine.CreateDate
                 };
 
                 model.BusinessOwner = Mapper.Map(wine.BusinessOwner);

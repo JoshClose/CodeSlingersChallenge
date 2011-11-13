@@ -1,34 +1,98 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using CodeSlingers.Web.Models;
+﻿using CodeSlingers.Web.Models;
+using System;
 
 namespace CodeSlingers.WP7.App.Models
 {
-    public class WineModel
+    public class WineModel : ModelBase
     {
-        public int Id { get; set; }
+    	private int id;
+    	private string name;
+    	private string varietal;
+    	private int year;
+    	private string photoPath;
+    	private string vineyard;
+    	private WineType type;
+    	private string country;
 
-        public string Name { get; set; }
+    	public int Id
+    	{
+			get { return id; }
+			set
+			{
+				id = value;
+				RaisePropertyChanged( () => Id );
+			}
+    	}
 
-        public string Varietal { get; set; }
+    	public string Name
+    	{
+			get { return name; }
+			set
+			{
+				name = value;
+				RaisePropertyChanged( () => Name );
+			}
+    	}
 
-        public int Year { get; set; }
+    	public string Varietal
+    	{
+			get { return varietal; }
+			set
+			{
+				varietal = value;
+				RaisePropertyChanged( () => Varietal );
+			}
+    	}
 
-        public string PhotoPath { get; set; }
+    	public int Year
+    	{
+			get { return year; }
+			set
+			{
+				year = value;
+				RaisePropertyChanged( () => Year );
+			}
+		}
 
-        public string Vineyard { get; set; }
+    	public string PhotoPath
+    	{
+			get { return photoPath; }
+			set
+			{
+				photoPath = value;
+				RaisePropertyChanged( () => PhotoPath );
+			}
+    	}
 
-        public WineType Type { get; set; }
+    	public string Vineyard
+    	{
+			get { return vineyard; }
+			set
+			{
+				vineyard = value;
+				RaisePropertyChanged( () => Vineyard );
+			}
+    	}
 
-        public string Country { get; set; }
+    	public WineType Type
+    	{
+			get { return type; }
+			set
+			{
+				type = value;
+				RaisePropertyChanged( () => Type );
+			}
+    	}
+
+    	public string Country
+    	{
+			get { return country; }
+			set
+			{
+				country = value;
+				RaisePropertyChanged( () => Country );
+			}
+    	}
 
         public string Comments { get; set; }
 
@@ -37,5 +101,7 @@ namespace CodeSlingers.WP7.App.Models
         public string PriceRange { get; set; }
 
         public BusinessModel BusinessOwner { get; set; }
+
+        public DateTime CreateDate { get; set; }
     }
 }

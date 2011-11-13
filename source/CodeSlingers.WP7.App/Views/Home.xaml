@@ -7,7 +7,9 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Views="clr-namespace:CodeSlingers.WP7.App.Views" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
+    xmlns:Views="clr-namespace:CodeSlingers.WP7.App.Views"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -21,22 +23,25 @@
             <!--Panorama item one-->
             <controls:PanoramaItem Header="nearby locations">
 				<ScrollViewer Margin="12,0,0,0">
-					<ItemsControl ItemsSource="{Binding Businesses}">
-						<ItemsControl.ItemTemplate>
-							<DataTemplate>
-								<Button Margin="0,0,0,12" Click="NearbyLocationItemClick">
-									<Button.Template>
-										<ControlTemplate>
-											<StackPanel>
-												<TextBlock Text="{Binding Name}" />
-												<TextBlock Text="{Binding AddressDisplay}" />
-											</StackPanel>
-										</ControlTemplate>
-									</Button.Template>
-								</Button>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ItemsControl>
+					<Grid>
+						<ItemsControl ItemsSource="{Binding Businesses}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<Button Margin="0,0,0,12" Click="NearbyLocationItemClick">
+										<Button.Template>
+											<ControlTemplate>
+												<StackPanel>
+													<TextBlock Text="{Binding Name}" />
+													<TextBlock Text="{Binding AddressDisplay}" />
+												</StackPanel>
+											</ControlTemplate>
+										</Button.Template>
+									</Button>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+						<telerikPrimitives:RadBusyIndicator IsRunning="{Binding IsLoading}" />
+					</Grid>
 				</ScrollViewer>
 			</controls:PanoramaItem>
 
