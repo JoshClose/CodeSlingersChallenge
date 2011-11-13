@@ -18,8 +18,11 @@ namespace CodeSlingers.WP7.App
         static Globals()
         {
             ServiceHostUrl = "http://localhost/CodeSlingers.Web";
-        	var watcher = new GeoCoordinateWatcher( GeoPositionAccuracy.Default );
-			watcher.PositionChanged += WatcherPositionChanged;
+        	var watcher = new GeoCoordinateWatcher( GeoPositionAccuracy.Default )
+        	{
+        		MovementThreshold = 20
+        	};
+        	watcher.PositionChanged += WatcherPositionChanged;
 			watcher.StatusChanged += WatcherStatusChanged;
         	watcher.Start();
         }

@@ -73,6 +73,9 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="Telerik.Windows.Controls.Primitives">
+      <HintPath>..\..\lib\Telerik\Telerik.Windows.Controls.Primitives.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CodeSlingers.Web\Models\Business.cs">
@@ -103,6 +106,7 @@
     <Compile Include="Models\WineModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ui\SmartDispatcher.cs" />
+    <Compile Include="ValueConverters\WineNameConverter.cs" />
     <Compile Include="Views\Business.xaml.cs">
       <DependentUpon>Business.xaml</DependentUpon>
     </Compile>
@@ -147,10 +151,10 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Toolkit.Content\ApplicationBar.Cancel.png" />
-    <Resource Include="Toolkit.Content\ApplicationBar.Check.png" />
-    <Resource Include="Toolkit.Content\ApplicationBar.Delete.png" />
-    <Resource Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
     <Resource Include="PanoramaBackground.png" />
     <Content Include="Content\Images\Icons\appbar.add.rest.png" />
     <Content Include="Content\Images\Icons\appbar.back.rest.png" />
