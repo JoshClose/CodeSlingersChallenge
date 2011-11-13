@@ -6,6 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CodeSlingers.Web.Data;
 using CodeSlingers.Web.Models;
 using CodeSlingers.Web.Services;
+using RestSharp;
+using System.Threading;
 
 namespace CodeSlingers.Web.Tests
 {
@@ -13,6 +15,7 @@ namespace CodeSlingers.Web.Tests
     public class DataTests
     {
         [TestMethod]
+        [Ignore]
         public void RavenConnectivityTest()
         {
             Wine wine;
@@ -66,7 +69,7 @@ namespace CodeSlingers.Web.Tests
                     {
                         Id = venues[j].Id
                     };
-                    for (int i = 0; i < r.Next(0, 5); i++)
+                    for (int i = 0; i < r.Next(2, 6); i++)
                     {
                         Wine w = new Wine();
                         w.Name = "Wine " + j.ToString() + i.ToString();
@@ -79,7 +82,7 @@ namespace CodeSlingers.Web.Tests
                         w.Vineyard = "Martha's";
                         w.Year = 1991;
                         w.CreateDate = DateTime.Today;
-
+                        w.AddParentBusiness(b.Id);
                         session.Store(w);
                         session.SaveChanges();
                         b.AddWine(w.Id);
@@ -137,6 +140,7 @@ namespace CodeSlingers.Web.Tests
 
         }
 
+        [Ignore]
         [TestMethod]
         public void CleanupDB()
         {
@@ -163,6 +167,21 @@ namespace CodeSlingers.Web.Tests
                 session.SaveChanges();
             }
 
+        }
+
+        [TestMethod]
+        public void FuckSilverlight()
+        {
+            var _restClient = new RestClient();
+            string requestUrl = string.Format("{0}/Users/Wines?accessToken=AAACWuuQ2bSIBAGIXgUT2oxaMxvkLnGGZBjAMI6WZB8lvjBZAddWuqFexZBD06eLK8sBhHWNvE8nZCG7YCjee6G2ZBmC9xwHZBMZD", "http://localhost");
+            var request = new RestRequest(requestUrl, Method.GET);
+
+            _restClient.ExecuteAsync<List<Wine>>(request, (response) =>
+            {
+                List<Wine> wines = response.Data;
+                
+            });
+            Thread.Sleep(4000);
         }
     }
 }

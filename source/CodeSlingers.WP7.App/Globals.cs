@@ -17,7 +17,7 @@ namespace CodeSlingers.WP7.App
     {
         static Globals()
         {
-            ServiceHostUrl = "http://localhost/CodeSlingers.Web";
+            ServiceHostUrl = "http://localhost";
         	var watcher = new GeoCoordinateWatcher( GeoPositionAccuracy.Default )
         	{
         		MovementThreshold = 20

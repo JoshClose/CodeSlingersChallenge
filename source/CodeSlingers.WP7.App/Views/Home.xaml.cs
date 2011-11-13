@@ -21,11 +21,17 @@ namespace CodeSlingers.WP7.App.Views
 	{
 		private readonly ObservableCollection<BusinessModel> businesses = new ObservableCollection<BusinessModel>();
 		private bool isLoading;
+        private readonly ObservableCollection<WineModel> winesByUser = new ObservableCollection<WineModel>();
  
 		public ObservableCollection<BusinessModel> Businesses
 		{
 			get { return businesses; }
 		}
+
+        public ObservableCollection<WineModel> WinesByUser
+        {
+            get { return winesByUser; }
+        }
 
 		public bool IsLoading
 		{
@@ -54,6 +60,7 @@ namespace CodeSlingers.WP7.App.Views
 				switch( panoramaItem )
 				{
 					case PanoramaItems.MyWines:
+                        LoadByUser();
 						break;
 					case PanoramaItems.Nearby:
 						LoadBusinesses();
@@ -76,6 +83,10 @@ namespace CodeSlingers.WP7.App.Views
 
 		private void MyWinesGotFocus( object sender, RoutedEventArgs e )
 		{
+            if (winesByUser.Count == 0)
+            {
+                LoadByUser();
+            }
 		}
 
 		private void LoadBusinesses()
@@ -94,6 +105,22 @@ namespace CodeSlingers.WP7.App.Views
 			} ) );
 		}
 
+        private void LoadByUser()
+        {
+            IsLoading = true;
+            var userProxy = new UserProxy();
+            userProxy.GetWinesByUser(Globals.FacebookAccessToken, (wines) => SmartDispatcher.BeginInvoke( () =>
+                {
+                    winesByUser.Clear();
+                    foreach (var wine in wines)
+                    {
+                        winesByUser.Add(wine);
+                    }
+                    IsLoading = false;
+                    RaisePropertyChanged(() => WinesByUser);
+                }));
+        }
+
 		private void NearbyLocationItemClick( object sender, RoutedEventArgs e )
 		{
 			var business = ( (FrameworkElement)sender ).DataContext as BusinessModel;
@@ -105,6 +132,17 @@ namespace CodeSlingers.WP7.App.Views
 			var uri = new Uri( string.Format( "{0}?businessId={1}&businessName={2}", ViewPaths.Business, business.Id, business.Name ), UriKind.RelativeOrAbsolute );
 			NavigationService.Navigate( uri );
 		}
+
+        private void WineItemClick(object sender, RoutedEventArgs e)
+        {
+            var wine = ((FrameworkElement)sender).DataContext as WineModel;
+            if (wine == null)
+            {
+                return;
+            }
+            var uri = new Uri(string.Format("{0}?wineId={1}", ViewPaths.WineDetail, wine.Id), UriKind.RelativeOrAbsolute);
+            NavigationService.Navigate(uri);
+        }
 
 		private void AddWineClick( object sender, EventArgs e )
 		{
