@@ -1,5 +1,6 @@
 ﻿using CodeSlingers.Web.Models;
 using System;
+using System.Windows.Media.Imaging;
 
 namespace CodeSlingers.WP7.App.Models
 {
@@ -9,7 +10,7 @@ namespace CodeSlingers.WP7.App.Models
     	private string name;
     	private string varietal;
     	private int year;
-    	private string photoPath;
+    	private BitmapImage photoPath;
     	private string vineyard;
     	private WineType type;
     	private string country;
@@ -60,7 +61,7 @@ namespace CodeSlingers.WP7.App.Models
 			}
 		}
 
-    	public string PhotoPath
+    	public BitmapImage PhotoPath
     	{
 			get { return photoPath; }
 			set

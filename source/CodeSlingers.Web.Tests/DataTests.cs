@@ -81,8 +81,10 @@ namespace CodeSlingers.Web.Tests
                         w.Varietal = RedVarietals.Merlot;
                         w.Vineyard = "Martha's";
                         w.Year = 1991;
+                        w.CreatedByUserId = 16906171;
                         w.CreateDate = DateTime.Today;
                         w.AddParentBusiness(b.Id);
+                        w.PhotoPath = "default.bmp";
                         session.Store(w);
                         session.SaveChanges();
                         b.AddWine(w.Id);
@@ -169,6 +171,7 @@ namespace CodeSlingers.Web.Tests
 
         }
 
+        [Ignore]
         [TestMethod]
         public void FuckSilverlight()
         {

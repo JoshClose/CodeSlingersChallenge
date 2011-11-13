@@ -1,4 +1,5 @@
 ﻿using CodeSlingers.Web.Models;
+using System.Windows.Media.Imaging;
 
 namespace CodeSlingers.WP7.App.Models
 {
@@ -40,7 +41,7 @@ namespace CodeSlingers.WP7.App.Models
                     Id = wine.Id,
                     Country = wine.Country,
                     Name = wine.Name,
-                    PhotoPath = wine.PhotoPath,
+                    PhotoPath = new BitmapImage(new System.Uri( Globals.ServiceHostUrl + "/content/images/wines/" + wine.PhotoPath)),
                     Type = wine.Type,
                     Varietal = wine.Varietal,
                     Vineyard = wine.Vineyard,
@@ -68,7 +69,7 @@ namespace CodeSlingers.WP7.App.Models
                     Id = 0,
                     Country = wineModel.Country,
                     Name = wineModel.Name,
-                    PhotoPath = wineModel.PhotoPath,
+                    //hotoPath = wineModel.PhotoPath,
                     Type = wineModel.Type,
                     Varietal = wineModel.Varietal,
                     Vineyard = wineModel.Vineyard,
