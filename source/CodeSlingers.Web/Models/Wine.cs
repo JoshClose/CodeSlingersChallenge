@@ -31,7 +31,7 @@ namespace CodeSlingers.Web.Models
 
         public Business BusinessOwner { get; set; }
 
-        public string BusinessId { get; private set; }
+        public string BusinessId { get; set; }
 
         public DateTime CreateDate { get; set; }
 
