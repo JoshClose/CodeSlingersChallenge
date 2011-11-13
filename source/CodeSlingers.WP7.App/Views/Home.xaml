@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Views="clr-namespace:CodeSlingers.WP7.App.Views"
+    xmlns:ValueConverters="clr-namespace:CodeSlingers.WP7.App.ValueConverters"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -15,7 +16,9 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-
+    <Views:ViewBase.Resources>
+        <ValueConverters:WineNameConverter x:Key="WineNameConverter" />
+    </Views:ViewBase.Resources>
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
         <controls:Panorama Title="wine scout" x:Name="panorama" SelectionChanged="PanoramaSelectionChanged">
@@ -47,7 +50,33 @@
 
             <!--Panorama item two-->
             <controls:PanoramaItem Header="my wines">
-                <Grid/>
+                <ScrollViewer Margin="12,0,0,0">
+                    <ItemsControl ItemsSource="{Binding WinesByUser}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Click="WineItemClick">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Varietal}" />
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Grid.Column="0" Source="{Binding PhotoPath}" Width="50" Height="50" Margin="0,0,12,0" />
+                                                    <StackPanel Grid.Column="1">
+                                                        <TextBlock Text="{Binding Converter={StaticResource WineNameConverter}}" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </StackPanel>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
