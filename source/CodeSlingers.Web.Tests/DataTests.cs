@@ -90,6 +90,52 @@ namespace CodeSlingers.Web.Tests
         }
 
         [TestMethod]
+        public void SeedUsers()
+        {
+            // Run after seed Wine Business
+
+            //Eric
+            //16906171
+
+            //Ryan
+            //100002330284367
+
+            //Josh
+            //508037125
+            List<Wine> availableWines;
+            using(var session = Db.CreateSession())
+            {
+                availableWines = session.Query<Wine>().ToList();
+            }
+
+            var eric = new User();
+            eric.Id = 16906171;
+            eric.AddWine(availableWines[0].Id);
+            eric.AddWine(availableWines[1].Id);
+            eric.AddWine(availableWines[2].Id);
+
+            var ryan = new User();
+            ryan.Id = 100002330284367;
+            ryan.AddWine(availableWines[3].Id);
+            ryan.AddWine(availableWines[1].Id);
+            ryan.AddWine(availableWines[2].Id);
+
+            var josh = new User();
+            josh.Id = 508037125;
+            josh.AddWine(availableWines[3].Id);
+            josh.AddWine(availableWines[4].Id);
+
+            using (var session = Db.CreateSession())
+            {
+                session.Store(eric);
+                session.Store(ryan);
+                session.Store(josh);
+                session.SaveChanges();
+            }
+
+        }
+
+        [TestMethod]
         public void CleanupDB()
         {
             using (var session = Db.CreateSession())

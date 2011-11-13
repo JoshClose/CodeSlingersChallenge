@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WinesController.cs" />
     <Compile Include="Data\Db.cs" />
     <Compile Include="Global.asax.cs">
@@ -103,6 +104,7 @@
     <Compile Include="Models\Contracts\FourSquareVenueDetailResponse.cs" />
     <Compile Include="Models\Contracts\FourSquareVenueDetailResponseResponse.cs" />
     <Compile Include="Models\Contracts\FourSquareVenueResponse.cs" />
+    <Compile Include="Models\FacebookUser.cs" />
     <Compile Include="Models\PriceRanges.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Contracts\FourSquareVenueResponseResponse.cs" />
