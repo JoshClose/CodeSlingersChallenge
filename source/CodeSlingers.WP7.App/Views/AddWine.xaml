@@ -31,28 +31,27 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<StackPanel>
-				<Image Source="{Binding Photo}" />
-				<Button Content="Add Photo" Click="AddPhotoClick" />
-				<Button Content="Add Location" Click="AddLocationClick" />
-				<Controls:WatermarkTextBox WatermarkText="wine name" Text="{Binding WineModel.Name}" InputScope="Text" />
-				<telerikInput:RadListPicker Header="wine type" ItemsSource="{Binding WineTypes}">
-				</telerikInput:RadListPicker>
-				<telerikInput:RadListPicker Header="price" ItemsSource="{Binding Prices}">
-				</telerikInput:RadListPicker>
-				<Controls:WatermarkTextBox WatermarkText="comments" InputScope="Text" AcceptsReturn="True" TextWrapping="Wrap"
+			<ScrollViewer>
+				<StackPanel>
+					<Image Source="{Binding Photo}" Margin="12,0,12,0" />
+					<Button Content="Add Photo" Click="AddPhotoClick" />
+					<Button Content="Add Location" Click="AddLocationClick" />
+					<Controls:WatermarkTextBox WatermarkText="wine name" Text="{Binding WineModel.Name}" InputScope="Text" />
+					<telerikInput:RadListPicker Header="wine type" ItemsSource="{Binding WineTypes}"/>
+					<telerikInput:RadListPicker Header="price" ItemsSource="{Binding Prices}"/>
+					<Controls:WatermarkTextBox WatermarkText="comments" InputScope="Text" AcceptsReturn="True" TextWrapping="Wrap"
 										   Text="{Binding WineModel.Comments}"/>
-				<Controls:WatermarkTextBox WatermarkText="pairings" InputScope="Text" AcceptsReturn="True" TextWrapping="Wrap"
+					<Controls:WatermarkTextBox WatermarkText="pairings" InputScope="Text" AcceptsReturn="True" TextWrapping="Wrap"
 										   Text="{Binding WineModel.Pairings}"/>
-			</StackPanel>
+				</StackPanel>
+			</ScrollViewer>
 		</Grid>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBarIconButton IconUri="/Content/Images/Icons/appbar.save.rest.png" Text="save" Click="SaveClick"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
                 <shell:ApplicationBarMenuItem Text="MenuItem 2"/>

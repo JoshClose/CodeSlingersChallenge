@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CodeSlingers.WP7.App.Models;
+using CodeSlingers.WP7.App.Proxies;
 using CodeSlingers.Web.Models;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
@@ -23,6 +25,7 @@ namespace CodeSlingers.WP7.App.Views
 	{
 		private WineModel wineModel = new WineModel();
 		private BitmapImage photo = new BitmapImage();
+		private bool isLoading;
 
 		public WineModel WineModel
 		{
@@ -41,6 +44,16 @@ namespace CodeSlingers.WP7.App.Views
 			{
 				photo = value;
 				RaisePropertyChanged( () => Photo );
+			}
+		}
+
+		public bool IsLoading
+		{
+			get { return isLoading; }
+			set
+			{
+				isLoading = value;
+				RaisePropertyChanged( () => IsLoading );
 			}
 		}
 
@@ -85,10 +98,15 @@ namespace CodeSlingers.WP7.App.Views
 			var task = new PhotoChooserTask();
 			task.Completed += ( sender, args ) =>
 			{
-				if( args.TaskResult == TaskResult.OK )
+				if( args.TaskResult != TaskResult.OK )
 				{
-					Photo.SetSource( args.ChosenPhoto );
+					return;
 				}
+				WineModel.Photo = new byte[args.ChosenPhoto.Length];
+				args.ChosenPhoto.Read( WineModel.Photo, 0, WineModel.Photo.Length );
+				args.ChosenPhoto.Position = 0;
+
+				Photo.SetSource( args.ChosenPhoto );
 			};
 			task.Show();
 		}
@@ -98,10 +116,15 @@ namespace CodeSlingers.WP7.App.Views
 			var task = new CameraCaptureTask();
 			task.Completed += ( sender, args ) =>
 			{
-				if( args.TaskResult == TaskResult.OK )
+				if( args.TaskResult != TaskResult.OK )
 				{
-					Photo.SetSource( args.ChosenPhoto );
+					return;
 				}
+				WineModel.Photo = new byte[args.ChosenPhoto.Length];
+				args.ChosenPhoto.Read( WineModel.Photo, 0, WineModel.Photo.Length );
+				args.ChosenPhoto.Position = 0;
+
+				Photo.SetSource( args.ChosenPhoto );
 			};
 			task.Show();
 		}
@@ -126,6 +149,16 @@ namespace CodeSlingers.WP7.App.Views
 				PriceRanges.FiftyToOneHundred,
 				PriceRanges.OverOneHundred,
 			};
+		}
+
+		private void SaveClick( object sender, EventArgs e )
+		{
+			IsLoading = true;
+			var wineProxy = new WineProxy();
+			wineProxy.SaveNewWine( WineModel, Globals.FacebookAccessToken, callback =>
+			{
+				IsLoading = false;
+			} );
 		}
 	}
 }
