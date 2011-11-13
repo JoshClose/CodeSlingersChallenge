@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Device.Location;
+using System.Diagnostics;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,7 +18,20 @@ namespace CodeSlingers.WP7.App
         static Globals()
         {
             ServiceHostUrl = "http://localhost/CodeSlingers.Web";
+        	var watcher = new GeoCoordinateWatcher( GeoPositionAccuracy.Default );
+			watcher.PositionChanged += WatcherPositionChanged;
+			watcher.StatusChanged += WatcherStatusChanged;
+        	watcher.Start();
         }
+
+		static void WatcherPositionChanged( object sender, GeoPositionChangedEventArgs<GeoCoordinate> e )
+		{
+		}
+
+		static void WatcherStatusChanged( object sender, GeoPositionStatusChangedEventArgs e )
+		{
+			Debug.WriteLine( "GeoPosition Status Changed: {0}", e.Status );
+		}
 
         public static string ServiceHostUrl { get; private set; }
 

@@ -28,7 +28,7 @@ namespace CodeSlingers.WP7.App.Proxies
         public void GetNearbyBusinesses(decimal latitude, decimal longitude, Action<IList<BusinessModel>> callback)
         {
             string requestUrl = string.Format("{0}/Location/NearbyBusinesses", Globals.ServiceHostUrl);
-            var request = new RestRequest(requestUrl, Method.POST);
+            var request = new RestRequest(requestUrl, Method.GET);
             request.AddParameter("latitude", latitude);
             request.AddParameter("longitude", longitude);
 
