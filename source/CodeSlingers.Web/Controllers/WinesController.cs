@@ -5,13 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using CodeSlingers.Web.Models;
 using CodeSlingers.Web.Data;
+using CodeSlingers.Web.Services;
 
 namespace CodeSlingers.Web.Controllers
 {
     public class WinesController : Controller
     {
-        //
-        // GET: /Wine/
+        private readonly IFourSquareApi _fourSquareApi;
+
+        public WinesController(IFourSquareApi fourSquareApi)
+        {
+            _fourSquareApi = fourSquareApi;
+        }
 
         public ActionResult ByLocation(string businessId)
         {
@@ -25,11 +30,13 @@ namespace CodeSlingers.Web.Controllers
                     return Json("No business found", JsonRequestBehavior.AllowGet);
                 }
 
+                Business businessOwner = _fourSquareApi.GetVenueById(businessId);
                 foreach (var wineId in business.WineIds)
                 {
                     var wine = session.Load<Wine>(wineId);
                     if (wine != null)
                     {
+                        wine.BusinessOwner = businessOwner;
                         wines.Add(wine);
                     }
                 }
@@ -39,17 +46,19 @@ namespace CodeSlingers.Web.Controllers
 
         public ActionResult ById(int wineId)
         {
-            Wine w;
+            Wine wine;
             using (var session = Db.CreateSession())
             {
-                w = session.Load<Wine>(wineId);
+                wine = session.Load<Wine>(wineId);
             }
-            if (w == null)
+            if (wine == null)
             {
                 Response.StatusCode = 404;
                 return Json("Wine not found", JsonRequestBehavior.AllowGet);
             }
-            return Json(w, JsonRequestBehavior.AllowGet);
+
+            wine.BusinessOwner = _fourSquareApi.GetVenueById("459d0982f964a520a0401fe3");
+            return Json(wine, JsonRequestBehavior.AllowGet);
         }
 
     }

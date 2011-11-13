@@ -53,7 +53,7 @@ namespace CodeSlingers.Web.Tests
         //}
 
         [TestMethod]
-        public void Seed()
+        public void SeedWineBusiness()
         {
             using (var session = Db.CreateSession())
             {
@@ -70,6 +70,14 @@ namespace CodeSlingers.Web.Tests
                     {
                         Wine w = new Wine();
                         w.Name = "Wine " + j.ToString() + i.ToString();
+                        w.Comments = "This is a tasty wine";
+                        w.Country = "USA";
+                        w.Pairing = "I'd drink this with Doritos";
+                        w.PriceRange = PriceRanges.UnderTwentyFive;
+                        w.Type = WineType.Red;
+                        w.Varietal = RedVarietals.Merlot;
+                        w.Vineyard = "Martha's";
+
                         session.Store(w);
                         session.SaveChanges();
                         b.AddWine(w.Id);

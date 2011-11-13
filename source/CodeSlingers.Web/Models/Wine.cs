@@ -21,5 +21,14 @@ namespace CodeSlingers.Web.Models
         public WineType Type { get; set; }
 
         public string Country { get; set; }
+
+        public string Comments { get; set; }
+
+        public string Pairing { get; set; }
+
+        //Use PriceRanges strings for these values
+        public string PriceRange { get; set; }
+
+        public Business BusinessOwner { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace CodeSlingers.WP7.App
 
 		private void SignInFacebookClick( object sender, RoutedEventArgs e )
 		{
+            NavigationService.Navigate(new Uri("/FacebookLoginPage.xaml", UriKind.Relative));
 		}
 
 		private void FindWinesClick( object sender, RoutedEventArgs e )
