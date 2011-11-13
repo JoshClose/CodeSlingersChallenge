@@ -82,5 +82,17 @@ namespace CodeSlingers.WP7.App.Views
 				RaisePropertyChanged( () => Wines );
 			} ) );
 		}
+
+		private void WineItemClick( object sender, RoutedEventArgs e )
+		{
+			var wine = ( (FrameworkElement)sender ).DataContext as WineModel;
+			if( wine == null )
+			{
+				return;
+			}
+
+			var uri = new Uri( string.Format( "{0}?wineId={1}", ViewPaths.WineDetail, wine.Id ), UriKind.RelativeOrAbsolute );
+			NavigationService.Navigate( uri );
+		}
 	}
 }
