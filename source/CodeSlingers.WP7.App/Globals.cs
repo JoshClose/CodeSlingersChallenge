@@ -19,5 +19,7 @@ namespace CodeSlingers.WP7.App
         }
 
         public static string ServiceHostUrl { get; private set; }
+
+        public static string FacebookAccessToken { get; set; }
     }
 }

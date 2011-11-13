@@ -11,6 +11,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Facebook;
+using CodeSlingers.WP7.App.Ui;
+using CodeSlingers.WP7.App.Views;
 
 namespace CodeSlingers.WP7.App
 {
@@ -18,7 +20,7 @@ namespace CodeSlingers.WP7.App
     {
         private const string AppId = "165729436855586";
 
-        private const string AppSecret = "46441176b26f9f670ff43a1de3522dba";
+        private const string AppSecret = "598d86c2b62549bfb8c2cf2305a436de";
 
         /// <summary>
         /// Extended permissions is a comma separated list of permissions to ask the user.
@@ -56,6 +58,7 @@ namespace CodeSlingers.WP7.App
 
             // when the Form is loaded navigate to the login url.
             _loginUrl = oauthClient.GetLoginUrl(loginParameters);
+            _loginUrl = new Uri(_loginUrl.ToString().Replace("display=touch", ""));
 
             InitializeComponent();
         }
@@ -98,9 +101,10 @@ namespace CodeSlingers.WP7.App
                             {
                                 var result = (IDictionary<string, object>)args.GetResultData();
                                 var accessToken = (string)result["access_token"];
-
+                                Globals.FacebookAccessToken = accessToken;
                                 // make sure to access ui stuffs on the correct thread.
-                                Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/FacebookInfoPage.xaml?access_token=" + accessToken, UriKind.Relative)));
+                                var uri = new Uri(string.Format("{0}?panoramaItem={1}", ViewPaths.Home, PanoramaItems.MyWines), UriKind.RelativeOrAbsolute);
+                                Dispatcher.BeginInvoke(() => NavigationService.Navigate(uri));
                             }
                         };
 
