@@ -64,5 +64,39 @@ namespace CodeSlingers.Web.Controllers
             return Json(wine, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPut]
+        public ActionResult Create(Wine wine)
+        {
+            if(wine == null || wine.BusinessOwner == null || string.IsNullOrEmpty(wine.BusinessOwner.Id))
+            {
+                throw new ArgumentException("Invalid wine specified for create.");
+            }
+
+            using (var session = Db.CreateSession())
+            {
+                WineBusiness wineBusiness = session.Load<WineBusiness>(wine.BusinessOwner.Id);
+                if (wineBusiness == null)
+                {
+                    wineBusiness = new WineBusiness()
+                    {
+                        Id = wine.BusinessOwner.Id
+                    };
+                    session.Store(wineBusiness);
+                    session.SaveChanges();
+                }
+
+                wine.CreateDate = DateTime.Today;
+                wine.AddParentBusiness(wineBusiness.Id);
+
+                session.Store(wine);
+                session.SaveChanges();
+
+                wineBusiness.AddWine(wine.Id);
+                session.Store(wineBusiness);
+                session.SaveChanges();
+            }
+
+            return this.Json(wine);
+        }
     }
 }
