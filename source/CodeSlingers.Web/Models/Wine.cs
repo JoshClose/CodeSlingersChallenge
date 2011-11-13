@@ -31,8 +31,15 @@ namespace CodeSlingers.Web.Models
 
         public Business BusinessOwner { get; set; }
 
+        public string BusinessId { get; private set; }
+
         public DateTime CreateDate { get; set; }
 
         public string CreatedByUserId { get; set; }
+
+        public void AddParentBusiness(string businessId)
+        {
+            this.BusinessId = "businesses/" + businessId;
+        }
     }
 }
