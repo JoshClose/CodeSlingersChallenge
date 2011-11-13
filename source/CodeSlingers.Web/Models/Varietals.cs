@@ -1,9 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace CodeSlingers.Web.Models
 {
+    public static class VarietalsHelper
+    {
+        public static ObservableCollection<string> GetVarietalsListByWineType(string wineType)
+        {
+            string name = wineType.ToLower();
+            ObservableCollection<string> varietals = null;
+
+            if (name == "red")
+            {
+                varietals = RedVarietals.GetAllVarietals();
+            }
+            else if (name == "white")
+            {
+                varietals = WhiteVarietals.GetAllVarietals();
+            }
+            else if (name == "rose")
+            {
+                varietals = RoseVarietals.GetAllVarietals();
+            }
+            else if (name == "dessert")
+            {
+                varietals = DessertVarietals.GetAllVarietals();
+            }
+            else
+            {
+                //default to red
+                varietals = RedVarietals.GetAllVarietals();
+            }
+
+            return varietals;
+        }
+    }
+
     public static class RedVarietals
     {
         static RedVarietals()
@@ -14,6 +48,11 @@ namespace CodeSlingers.Web.Models
 
         public static string CabSav { get; private set; }
         public static string Merlot { get; private set; }
+
+        public static ObservableCollection<string> GetAllVarietals()
+        {
+            return new ObservableCollection<string> { CabSav, Merlot };
+        }
     }
 
     public static class WhiteVarietals
@@ -26,6 +65,11 @@ namespace CodeSlingers.Web.Models
 
         public static string PinotGrigio { get; private set; }
         public static string Riesling { get; private set; }
+
+        public static ObservableCollection<string> GetAllVarietals()
+        {
+            return new ObservableCollection<string> { PinotGrigio, Riesling };
+        }
     }
 
     public static class RoseVarietals
@@ -38,6 +82,11 @@ namespace CodeSlingers.Web.Models
 
         public static string WhiteZin { get; private set; }
         public static string MerlotRose { get; private set; }
+
+        public static ObservableCollection<string> GetAllVarietals()
+        {
+            return new ObservableCollection<string> { WhiteZin, MerlotRose };
+        }
     }
 
     public static class DessertVarietals
@@ -50,5 +99,10 @@ namespace CodeSlingers.Web.Models
 
         public static string Port { get; private set; }
         public static string Sherry { get; private set; }
+
+        public static ObservableCollection<string> GetAllVarietals()
+        {
+            return new ObservableCollection<string> { Port, Sherry };
+        }
     }
 }
