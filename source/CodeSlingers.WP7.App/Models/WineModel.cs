@@ -1,4 +1,5 @@
 ﻿using CodeSlingers.Web.Models;
+using System;
 
 namespace CodeSlingers.WP7.App.Models
 {
@@ -100,5 +101,7 @@ namespace CodeSlingers.WP7.App.Models
         public string PriceRange { get; set; }
 
         public BusinessModel BusinessOwner { get; set; }
+
+        public DateTime CreateDate { get; set; }
     }
 }

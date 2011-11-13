@@ -30,5 +30,7 @@ namespace CodeSlingers.Web.Models
         public string PriceRange { get; set; }
 
         public Business BusinessOwner { get; set; }
+
+        public DateTime CreateDate { get; set; }
     }
 }
