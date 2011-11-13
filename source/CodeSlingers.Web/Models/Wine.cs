@@ -35,7 +35,7 @@ namespace CodeSlingers.Web.Models
 
         public DateTime CreateDate { get; set; }
 
-        public string CreatedByUserId { get; set; }
+        public long CreatedByUserId { get; set; }
 
         public void AddParentBusiness(string businessId)
         {
