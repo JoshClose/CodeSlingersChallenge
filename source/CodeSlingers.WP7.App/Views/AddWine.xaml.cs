@@ -9,6 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CodeSlingers.WP7.App.Models;
 using CodeSlingers.Web.Models;
@@ -21,7 +22,7 @@ namespace CodeSlingers.WP7.App.Views
 	public partial class AddWine : ViewBase
 	{
 		private WineModel wineModel = new WineModel();
-		private readonly ObservableCollection<string> wineTypes = new ObservableCollection<string>();
+		private BitmapImage photo = new BitmapImage();
 
 		public WineModel WineModel
 		{
@@ -30,6 +31,16 @@ namespace CodeSlingers.WP7.App.Views
 			{
 				wineModel = value;
 				RaisePropertyChanged( () => WineModel );
+			}
+		}
+
+		public BitmapImage Photo
+		{
+			get { return photo; }
+			set
+			{
+				photo = value;
+				RaisePropertyChanged( () => Photo );
 			}
 		}
 
@@ -72,14 +83,26 @@ namespace CodeSlingers.WP7.App.Views
 		private void ChoosePhotoFromLibrary()
 		{
 			var task = new PhotoChooserTask();
-			task.Completed += ( sender, args ) => { };
+			task.Completed += ( sender, args ) =>
+			{
+				if( args.TaskResult == TaskResult.OK )
+				{
+					Photo.SetSource( args.ChosenPhoto );
+				}
+			};
 			task.Show();
 		}
 
 		private void TakePictureFromCamera()
 		{
 			var task = new CameraCaptureTask();
-			task.Completed += ( sender, args ) => { };
+			task.Completed += ( sender, args ) =>
+			{
+				if( args.TaskResult == TaskResult.OK )
+				{
+					Photo.SetSource( args.ChosenPhoto );
+				}
+			};
 			task.Show();
 		}
 

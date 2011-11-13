@@ -32,6 +32,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<StackPanel>
+				<Image Source="{Binding Photo}" />
 				<Button Content="Add Photo" Click="AddPhotoClick" />
 				<Button Content="Add Location" Click="AddLocationClick" />
 				<Controls:WatermarkTextBox WatermarkText="wine name" Text="{Binding WineModel.Name}" InputScope="Text" />
