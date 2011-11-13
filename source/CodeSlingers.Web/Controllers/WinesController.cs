@@ -72,6 +72,11 @@ namespace CodeSlingers.Web.Controllers
                 throw new ArgumentException("Invalid wine specified for create.");
             }
 
+            if (wine.Id > 0)
+            {
+                throw new InvalidOperationException("Create not allowed on an already existing wine.");
+            }
+
             using (var session = Db.CreateSession())
             {
                 WineBusiness wineBusiness = session.Load<WineBusiness>(wine.BusinessOwner.Id);
@@ -86,6 +91,7 @@ namespace CodeSlingers.Web.Controllers
                 }
 
                 wine.CreateDate = DateTime.Today;
+                wine.BusinessOwner = null; //this not stored in DB
                 wine.AddParentBusiness(wineBusiness.Id);
 
                 session.Store(wine);
