@@ -13,6 +13,12 @@ namespace CodeSlingers.WP7.App.Models
     	private string vineyard;
     	private WineType type;
     	private string country;
+    	private string comments;
+    	private string pairing;
+    	private string priceRange;
+    	private BusinessModel businessOwner;
+    	private DateTime createDate;
+    	private byte[] photo;
 
     	public int Id
     	{
@@ -94,14 +100,64 @@ namespace CodeSlingers.WP7.App.Models
 			}
     	}
 
-        public string Comments { get; set; }
+    	public string Comments
+    	{
+			get { return comments; }
+			set
+			{
+				comments = value;
+				RaisePropertyChanged( () => Comments );
+			}
+    	}
 
-        public string Pairing { get; set; }
+    	public string Pairing
+    	{
+			get { return pairing; }
+			set
+			{
+				pairing = value;
+				RaisePropertyChanged( () => Pairing );
+			}
+    	}
 
-        public string PriceRange { get; set; }
+    	public string PriceRange
+    	{
+			get { return priceRange; }
+			set
+			{
+				priceRange = value;
+				RaisePropertyChanged( () => PriceRange );
+			}
+    	}
 
-        public BusinessModel BusinessOwner { get; set; }
+    	public BusinessModel BusinessOwner
+    	{
+			get { return businessOwner; }
+			set
+			{
+				businessOwner = value;
+				RaisePropertyChanged( () => BusinessOwner );
+			}
+    	}
 
-        public DateTime CreateDate { get; set; }
+    	public DateTime CreateDate
+    	{
+			get { return createDate; }
+			set
+			{
+				createDate = value;
+				RaisePropertyChanged( () => CreateDate );
+			}
+    	}
+
+    	public byte[] Photo
+    	{
+			get { return photo; }
+			set
+			{
+				photo = value;
+				RaisePropertyChanged( () => Photo );
+			}
+    	}
     }
 }

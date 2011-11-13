@@ -143,5 +143,11 @@ namespace CodeSlingers.WP7.App.Views
             var uri = new Uri(string.Format("{0}?wineId={1}", ViewPaths.WineDetail, wine.Id), UriKind.RelativeOrAbsolute);
             NavigationService.Navigate(uri);
         }
+
+		private void AddWineClick( object sender, EventArgs e )
+		{
+			var uri = new Uri( string.Format( "{0}", ViewPaths.AddWine ), UriKind.RelativeOrAbsolute );
+			NavigationService.Navigate( uri );
+		}
 	}
 }

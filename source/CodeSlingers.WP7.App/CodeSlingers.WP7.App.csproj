@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CS.Windows.Controls">
+      <HintPath>..\..\lib\WindowsPhoneControls.0.3.0\lib\sl4-windowsphone71\CS.Windows.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="Facebook">
       <HintPath>..\..\lib\Facebook\Facebook.dll</HintPath>
     </Reference>
@@ -76,6 +79,9 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\..\lib\Telerik\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Controls.Primitives">
       <HintPath>..\..\lib\Telerik\Telerik.Windows.Controls.Primitives.dll</HintPath>
     </Reference>
@@ -84,11 +90,17 @@
     <Compile Include="..\CodeSlingers.Web\Models\Business.cs">
       <Link>Data\Business.cs</Link>
     </Compile>
+    <Compile Include="..\CodeSlingers.Web\Models\FacebookUser.cs">
+      <Link>Data\FacebookUser.cs</Link>
+    </Compile>
     <Compile Include="..\CodeSlingers.Web\Models\PriceRanges.cs">
       <Link>Data\PriceRanges.cs</Link>
     </Compile>
     <Compile Include="..\CodeSlingers.Web\Models\User.cs">
       <Link>Data\User.cs</Link>
+    </Compile>
+    <Compile Include="..\CodeSlingers.Web\Models\Varietals.cs">
+      <Link>Data\Varietals.cs</Link>
     </Compile>
     <Compile Include="..\CodeSlingers.Web\Models\Wine.cs">
       <Link>Data\Wine.cs</Link>
@@ -117,6 +129,9 @@
     <Compile Include="Proxies\UserProxy.cs" />
     <Compile Include="Ui\SmartDispatcher.cs" />
     <Compile Include="ValueConverters\WineNameConverter.cs" />
+    <Compile Include="Views\AddWine.xaml.cs">
+      <DependentUpon>AddWine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Business.xaml.cs">
       <DependentUpon>Business.xaml</DependentUpon>
     </Compile>
@@ -142,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddWine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

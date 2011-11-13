@@ -52,5 +52,22 @@ namespace CodeSlingers.WP7.App.Proxies
                 callback(windeModel);
             });
         }
+
+        public void SaveNewWine(WineModel wineModel, string userAccessToken, Action<WineModel> callback)
+        {
+            Wine wine = Mapper.Map(wineModel);
+
+            string requestUrl = string.Format("{0}/Wines/Create", Globals.ServiceHostUrl);
+            var request = new RestRequest(requestUrl, Method.PUT);
+            request.AddBody(wine);
+            request.AddParameter("createdByUserAccessToken", userAccessToken);
+
+            _restClient.ExecuteAsync<Wine>(request, (response) =>
+            {
+                Wine savedWine = response.Data;
+                WineModel windeModel = Mapper.Map(savedWine);
+                callback(windeModel);
+            });
+        }
     }
 }
