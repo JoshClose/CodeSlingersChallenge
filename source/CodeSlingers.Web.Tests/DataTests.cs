@@ -77,6 +77,7 @@ namespace CodeSlingers.Web.Tests
                         w.Type = WineType.Red;
                         w.Varietal = RedVarietals.Merlot;
                         w.Vineyard = "Martha's";
+                        w.Year = 1991;
                         w.CreateDate = DateTime.Today;
 
                         session.Store(w);

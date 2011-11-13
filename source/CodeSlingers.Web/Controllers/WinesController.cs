@@ -64,5 +64,10 @@ namespace CodeSlingers.Web.Controllers
             return Json(wine, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPut]
+        public ActionResult Create(Wine wine)
+        {
+            return null;
+        }
     }
 }
