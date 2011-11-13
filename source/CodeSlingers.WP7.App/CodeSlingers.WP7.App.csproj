@@ -127,6 +127,9 @@
     <Compile Include="Views\PanoramaItems.cs" />
     <Compile Include="Views\ViewBase.cs" />
     <Compile Include="Views\ViewPaths.cs" />
+    <Compile Include="Views\WineDetail.xaml.cs">
+      <DependentUpon>WineDetail.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WineDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
